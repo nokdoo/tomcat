@@ -72,11 +72,16 @@ public final class Bootstrap {
         if (home != null) {
             File f = new File(home);
             try {
+            	/* getCanonicalFile vs getAbsoluteFile
+            	=> /root/dir        vs /root/././././dir
+            	*/
                 homeFile = f.getCanonicalFile();
             } catch (IOException ioe) {
                 homeFile = f.getAbsoluteFile();
             }
         }
+        
+        //homeFile = home/nokdoo/apache-tomcat-9.0.2-src/output/build
 
         if (homeFile == null) {
             // First fall-back. See if current directory is a bin directory
@@ -103,13 +108,16 @@ public final class Bootstrap {
             }
         }
 
+        //catalinaHomeFile = home/nokdoo/apache-tomcat-9.0.2-src/output/build
         catalinaHomeFile = homeFile;
         System.setProperty(
                 Globals.CATALINA_HOME_PROP, catalinaHomeFile.getPath());
-
+        //{Globals.CATALINA_HOME_PROP : home/nokdoo/apache-tomcat-9.0.2-src/output/build}
+        
         // Then base
         String base = System.getProperty(Globals.CATALINA_BASE_PROP);
         if (base == null) {
+        	//catalinaBaseFile = home/nokdoo/apache-tomcat-9.0.2-src/output/build
             catalinaBaseFile = catalinaHomeFile;
         } else {
             File baseFile = new File(base);
@@ -120,6 +128,7 @@ public final class Bootstrap {
             }
             catalinaBaseFile = baseFile;
         }
+        //{Globals.CATALINA_BASE_PROP : home/nokdoo/apache-tomcat-9.0.2-src/output/build}
         System.setProperty(
                 Globals.CATALINA_BASE_PROP, catalinaBaseFile.getPath());
     }
@@ -160,7 +169,13 @@ public final class Bootstrap {
 
     private ClassLoader createClassLoader(String name, ClassLoader parent)
         throws Exception {
-
+    	
+    	/* common.loader=
+    	 * "${catalina.base}/lib",
+    	 * "${catalina.base}/lib/*.jar",
+    	 * "${catalina.home}/lib",
+    	 * "${catalina.home}/lib/*.jar"
+    	 */
         String value = CatalinaProperties.getProperty(name + ".loader");
         if ((value == null) || (value.equals("")))
             return parent;

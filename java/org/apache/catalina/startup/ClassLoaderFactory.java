@@ -305,6 +305,8 @@ public final class ClassLoaderFactory {
         URL
     }
 
+    //보통의 class도 모두 static이다. 생략된 것일뿐.
+    //-> inner static class를 여러개 생성해도 하나의 인스턴스 생성되는 것이 아니다.
     public static class Repository {
         private final String location;
         private final RepositoryType type;

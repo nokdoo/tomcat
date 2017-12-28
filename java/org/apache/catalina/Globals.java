@@ -242,6 +242,9 @@ public final class Globals {
      * Name of the system property containing
      * the tomcat product installation path
      */
+    //start-launch에 작성된 -Dcatalina.home=... 부분이 여기임.
+    //-D를 붙이고 property를 지정함.
+    //home/nokdoo/apache-tomcat-9.0.2-src/output/build
     public static final String CATALINA_HOME_PROP = "catalina.home";
 
 

@@ -63,7 +63,9 @@ public class CatalinaProperties {
         String fileName = "catalina.properties";
 
         try {
+        	//catalina.config 환경변수를 가져옴.
             String configUrl = System.getProperty("catalina.config");
+            //configUrl = null
             if (configUrl != null) {
                 if (configUrl.indexOf('/') == -1) {
                     // No '/'. Must be a file name rather than a URL
@@ -75,17 +77,22 @@ public class CatalinaProperties {
         } catch (Throwable t) {
             handleThrowable(t);
         }
+        //is = null.
 
         if (is == null) {
             try {
                 File home = new File(Bootstrap.getCatalinaBase());
+                //home = home/nokdoo/apache-tomcat-9.0.2-src/output/build
                 File conf = new File(home, "conf");
+                //conf = home/nokdoo/apache-tomcat-9.0.2-src/output/build/conf
                 File propsFile = new File(conf, fileName);
+                //propsFile = home/nokdoo/apache-tomcat-9.0.2-src/output/build/conf/catalina.properties
                 is = new FileInputStream(propsFile);
             } catch (Throwable t) {
                 handleThrowable(t);
             }
         }
+        //is = home/nokdoo/apache-tomcat-9.0.2-src/output/build/conf/catalina.properties
 
         if (is == null) {
             try {
