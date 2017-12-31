@@ -44,6 +44,10 @@ resources.  This mechanism is used to provide the functionality defined in the
 Servlet Specification, version 2.4&#160;&#8212; in particular, Sections 9.4
 and 9.6.</p>
 
+<p class="kor">
+많은 서버 어플리케이션처럼, 톰캣은 컨테이너의 다른 부분과 컨테이너에서 실행 중인 웹 어플리케이션이 사용 가능한 클래스와 자원의 다른 저장소에 대한 액세스 하도록 다양한 클래스 로더를 설치한다. (이 클래스 로더들은 <code>java.lang.ClassLoader</code>을 구현하는 클래스다.)
+</p>
+
 <p>In a Java environment, class loaders are
 arranged in a parent-child tree.  Normally, when a class loader is asked to
 load a particular class or resource, it delegates the request to a parent
@@ -52,9 +56,17 @@ class loader(s) cannot find the requested class or resource.  Note, that the
 model for web application class loaders <em>differs</em> slightly from this,
 as discussed below, but the main principles are the same.</p>
 
+<p class="kor">
+자바 환경에서 클래스 로더들은 부모-자식 트리에 배치된다. 일반적으로 클래스 로더가 특정 클래스나 자원을 로드하기 위해 요청받을 때, 클래스 로더는 부모 클래스 로더에게 이 요청을 위임한다. 그리고 부모 클래스 로더가 요청 받은 클래스나 자원을 찾을 수 없을 때만 자신의 저장소를 찾는다. 아래에서 설명하는 웹 어플리케이션에 대한 모델은 이것과는 약간 <em>다르다</em>. 하지만 주된 원칙은 같다.
+</p>
+
 <p>When Tomcat is started, it creates a set of class loaders that are
 organized into the following parent-child relationships, where the parent
 class loader is above the child class loader:</p>
+
+<p class="kor">
+톰캣은 시작될 때, 다음의 부모-자식 관계로 구성된 클래스 로더의 집합을 생성한다. 그림에서 부모 클래스 로더는 자식 클래스 로더 위에 있다.
+</p>
 
 <source>      Bootstrap
           |
@@ -68,19 +80,32 @@ class loader is above the child class loader:</p>
 of classes and resources that they make visible, are discussed in detail in
 the following section.</p>
 
+<p class="kor">
+이 클래스 로더 각각의 특징은, 클래스 소스와 클래스 로더가 시각화할 수 있는 자원을 포함하여 다음 절에서 자세히 설명한다.
+</p>
+
 </section>
 
 <section name="Class Loader Definitions">
 
 <p>As indicated in the diagram above, Tomcat creates the following class
 loaders as it is initialized:</p>
+
+<p class="kor">
+위의 다이어그램에서 나타났듯이 톰캣은 초기화로써 다음의 클래스 로더를 생성한다.
+</p>
+
 <ul>
 <li><p><strong>Bootstrap</strong> &#8212; This class loader contains the basic
     runtime classes provided by the Java Virtual Machine, plus any classes from
     JAR files present in the System Extensions directory
     (<code>$JAVA_HOME/jre/lib/ext</code>).  <em>Note</em>: some JVMs may
     implement this as more than one class loader, or it may not be visible
-    (as a class loader) at all.</p></li>
+    (as a class loader) at all.</p>
+	<p class="kor">
+		<strong>Bootstrap</strong> &#8212; 이 클래스 로더는 JVM으로부터 제공받은 기본 런타임 클래스와 System Extensions directory(<code>$JAVA_HOME/jre/lib/ext</code>)에 있는 JAR파일의 클래스를 포함한다. <em>어떤 JVM은 이것을 하나 이상의 클래스 로더로 구현하거나, 클래스 로더로서 보여지지 않을 수 있다.</em>
+	</p>
+</li>
 <li><p><strong>System</strong> &#8212; This class loader is normally initialized
     from the contents of the <code>CLASSPATH</code> environment variable.  All
     such classes are visible to both Tomcat internal classes, and to web
@@ -90,10 +115,17 @@ loaders as it is initialized:</p>
     of the <code>CLASSPATH</code> environment variable itself, and instead
     build the System class loader from the following repositories:
     </p>
+	<p class="kor">
+		<strong>System</strong> &#8212; 이 클래스 로더는 일반적으로 <code>CLASSPATH</code> 환경 변수의 내용에 의해서 초기화된다. 이런 모든 클래스는 톰캣의 내부 클래스와 웹 어플리케이션에 보여진다. 하지만 표준 톰캣 startup 스크립트 (<code>$CATALINA_HOME/bin/catalina.sh</code> 또는 <code>%CATALINA_HOME%\bin\catalina.bat</code>)은 전적으로 <code>CLASSPATH</code> 환경 변수의 내용을 무시한다. 대신에, System 클래스 로더를 다음의 저장소에서 빌드한다.
+	</p>
     <ul>
     <li><p><em>$CATALINA_HOME/bin/bootstrap.jar</em> &#8212; Contains the
         main() method that is used to initialize the Tomcat server, and the
-        class loader implementation classes it depends on.</p></li>
+        class loader implementation classes it depends on.</p>
+		<p class="kor">
+			<em>$CATALINA_HOME/bin/bootstrap.jar</em> &#8212; 톰캣 서버를 초기화하기 위해 사용되는 main() 메소드와, 이 메소드가 의존하는 클래스 로더 구현 클래스를 포함한다.
+		</p>
+	</li>
     <li><p><em>$CATALINA_BASE/bin/tomcat-juli.jar</em> or
         <em>$CATALINA_HOME/bin/tomcat-juli.jar</em> &#8212; Logging
         implementation classes. These include enhancement classes to
@@ -102,26 +134,43 @@ loaders as it is initialized:</p>
         used internally by Tomcat.
         See <a href="logging.html">logging documentation</a> for more
         details.</p>
+		<p class="kor">
+			<em>$CATALINA_BASE/bin/tomcat-juli.jar</em> 또는 <em>$CATALINA_HOME/bin/tomcat-juli.jar</em> &#8212; 로깅 구현 클래스. 이것은 Tomcat JULI로 알려진 <code>java.util.logging</code> API에 대한 향상 클래스와 톰캣으로부터 내부적으로 사용되는 Apache Commons Logging library의 이름이 바뀐 복사본 패키지를 포함한다.
+		</p>
         <p>If <code>tomcat-juli.jar</code> is present in
         <em>$CATALINA_BASE/bin</em>, it is used instead of the one in
         <em>$CATALINA_HOME/bin</em>. It is useful in certain logging
-        configurations</p></li>
+        configurations</p>
+		<p class="kor">
+			<code>tomcat-juli.jar</code>는 <em>$CATALINA_BASE/bin</em>에 존재한다면, <em>$CATALINA_HOME/bin</em>에 위치한 것 대신에 사용된다. 이것은 logging configurations에 유용하다.
+		</p>
+		</li>
     <li><p><em>$CATALINA_HOME/bin/commons-daemon.jar</em> &#8212; The classes
         from <a href="http://commons.apache.org/daemon/">Apache Commons
         Daemon</a> project.
         This JAR file is not present in the <code>CLASSPATH</code> built by
         <code>catalina.bat</code>|<code>.sh</code> scripts, but is referenced
-        from the manifest file of <em>bootstrap.jar</em>.</p></li>
+        from the manifest file of <em>bootstrap.jar</em>.</p>
+		<p class="kor">
+			<em>$CATALINA_HOME/bin/commons-daemon.jar</em> &#8212; <a href="http://commons.apache.org/daemon/">Apache Commons Daemon</a> 프로젝트의 클래스. 이 JAR 파일은 <code>catalina.bat</code>|<code>.sh</code> 스크립트에 의해 빌드된 <code>CLASSPATH</code>에 존재하지 않는다. 하지만 <em>bootstrap.jar</em>의 manifest 파일에 의해서 참조된다.
+		</p>
+		</li>
     </ul>
     </li>
 <li><p><strong>Common</strong> &#8212; This class loader contains additional
     classes that are made visible to both Tomcat internal classes and to all
     web applications.</p>
+	<p class="kor">
+		<strong>Common</strong> &#8212; 이 클래스 로더는 톰캣 내부 클래스와 모든 웹 어플리케이션에서 볼 수 있도록 만들어진 추가적인 클래스를 포함한다.
+	</p>
     <p>Normally, application classes should <strong>NOT</strong>
     be placed here.  The locations searched by this class loader are defined by
     the <code>common.loader</code> property in
     $CATALINA_BASE/conf/catalina.properties. The default setting will search the
     following locations in the order they are listed:</p>
+	<p class="kor">
+		일반적으로 어플리케이션 클래스는 여기에 위치하지 <strong>않는다</strong>. 이 클래스 로더에 의해 찾아진 위치는 $CATALINA_BASE/conf/catalina.properties의 <code>common.loader</code> property에 의해 정의된다. 기본 세팅은 다음의 위치를 순서대로 찾는다.
+	</p>	
     <ul>
       <li>unpacked classes and resources in <code>$CATALINA_BASE/lib</code></li>
       <li>JAR files in <code>$CATALINA_BASE/lib</code></li>
@@ -129,6 +178,7 @@ loaders as it is initialized:</p>
       <li>JAR files in <code>$CATALINA_HOME/lib</code></li>
     </ul>
     <p>By default, this includes the following:</p>
+	<p class="kor">기본 값은 다음을 포함한다.</p>
     <ul>
     <li><em>annotations-api.jar</em> &#8212; JavaEE annotations classes.</li>
     <li><em>catalina.jar</em> &#8212; Implementation of the Catalina servlet
@@ -166,7 +216,11 @@ loaders as it is initialized:</p>
     classes and resources in the <code>/WEB-INF/classes</code> directory of
     your web application, plus classes and resources in JAR files
     under the <code>/WEB-INF/lib</code> directory of your web application,
-    are made visible to this web application, but not to other ones.</p></li>
+    are made visible to this web application, but not to other ones.</p>
+	<p class="kor">
+		<strong>WebappX</strong> &#8212; 하나의 클래스 로더는 단일 톰캣 인스턴스에 배포된 각 웹 어플리케이션에 대해 생성된다. 당신의 웹 어플리케이션의 <code>/WEB-INF/classes</code> 디렉토리에 압축이 풀린 모든 클래스와, 당신의 웹 어플리케이션의 <code>/WEB-INF/lib</code>에 있는 JAR 파일들의 클래스와 자원은 이 웹 어플리케이션에 보여진다. 이외의 것들에게는 보여지지 않는다.
+	</p>
+	</li>
 </ul>
 
 <p>As mentioned above, the web application class loader diverges from the
@@ -185,8 +239,15 @@ API classes for the specifications implemented by Tomcat
 (Servlet, JSP, EL, WebSocket). All other class loaders in Tomcat follow the
 usual delegation pattern.</p>
 
+<p class="kor">
+	언급했듯이, 웹 어플리케이션 클래스 로더는 기본 자바 모델(9.7.2절의 웹 어플리케이션 클래스 로더, Servlet Specification version 2.4의 권고에 따른)로부터 갈라진다. 웹 어플리케이션의 <em>WebappX</em> 클래스로부터 클래스를 로드하기 위한 요청이 처리될 때, 이 클래스 로더는 위임하기보다는 <strong>우선적으로</strong> 로컬 저장소에서 찾는다. 예외가 존재하기도 한다. JRE 기본 클래스에 속한 클래스는 오버라이드 될 수 없다. 여기에는, 표준을 보장하는 적절한 JVM 특성을 사용하여 오버라이드 된 XML parser 컴포넌트가, Java 8 이하의 특성과 Java 9 이상의 업그레이드 가능한 모듈의 특성을 오버라이드 한다. 마지막으로 웹 어플리케이션 클래스 로더는 항상 우선적으로, 톰캣(Servlet, JSP, EL, WebSocket)에 의해 구현된 명세를 위한 JavaEE API 클래스에 위임한다. 이외의 모든 톰캣 클래스 로더는 다음의 위임 패턴을 따른다.
+</p>
+
 <p>Therefore, from the perspective of a web application, class or resource
 loading looks in the following repositories, in this order:</p>
+<p class="kor">
+	따라서 웹 어플리케이션의 관점에서 볼 때, 클래스와 자원 로드는 다음의 저장소 순서대로 나타난다.
+</p>
 <ul>
 <li>Bootstrap classes of your JVM</li>
 <li><em>/WEB-INF/classes</em> of your web application</li>
@@ -199,6 +260,11 @@ loading looks in the following repositories, in this order:</p>
 <a href="config/loader.html">configured</a> with
 <code>&lt;Loader delegate=&quot;true&quot;/&gt;</code>
 then the order becomes:</p>
+
+<p>
+	웹 어플리케이션 클래스 로더가 <code>&lt;Loader delegate=&quot;true&quot;/&gt;</code>로 구성되어 있다면 다음 순서를 따른다.
+
+</p>
 <ul>
 <li>Bootstrap classes of your JVM</li>
 <li>System class loader classes (described above)</li>

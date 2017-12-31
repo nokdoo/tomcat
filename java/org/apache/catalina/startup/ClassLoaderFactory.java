@@ -223,7 +223,7 @@ public final class ClassLoaderFactory {
             for (int i = 0; i < array.length; i++) {
                 log.debug("  location " + i + " is " + array[i]);
             }
-
+        /* lambda 소스로 바꿔봄 
         return AccessController.doPrivileged(
                 new PrivilegedAction<URLClassLoader>() {
                     @Override
@@ -234,6 +234,14 @@ public final class ClassLoaderFactory {
                             return new URLClassLoader(array, parent);
                     }
                 });
+                */
+        PrivilegedAction<URLClassLoader> privilAction = () -> {
+        	if (parent == null)
+                return new URLClassLoader(array);
+            else
+                return new URLClassLoader(array, parent);
+        };
+        return AccessController.doPrivileged(privilAction);
     }
 
     private static boolean validateFile(File file,

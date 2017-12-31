@@ -149,7 +149,14 @@ public final class Bootstrap {
 
     // -------------------------------------------------------- Private Methods
 
-
+    /*
+     * 					   commonLoader
+     * 							|
+     * 					/				\
+     *           catalinaLoader    sharedLoader
+     *           근데 두 클래스 로더의 프로퍼가 catalina.properties에 존재하지 않아서 
+     *           두 변수 모두 parent(commonLoader)를 가리킴 
+     */
     private void initClassLoaders() {
         try {
             commonLoader = createClassLoader("common", null);
@@ -159,6 +166,9 @@ public final class Bootstrap {
             }
             catalinaLoader = createClassLoader("server", commonLoader);
             sharedLoader = createClassLoader("shared", commonLoader);
+            System.out.println(System.identityHashCode(commonLoader));
+            System.out.println(System.identityHashCode(catalinaLoader));
+            System.out.println(System.identityHashCode(sharedLoader));
         } catch (Throwable t) {
             handleThrowable(t);
             log.error("Class loader creation threw exception", t);
@@ -170,13 +180,17 @@ public final class Bootstrap {
     private ClassLoader createClassLoader(String name, ClassLoader parent)
         throws Exception {
     	
-    	/* common.loader=
+    	/* common.loaders
     	 * "${catalina.base}/lib",
     	 * "${catalina.base}/lib/*.jar",
     	 * "${catalina.home}/lib",
     	 * "${catalina.home}/lib/*.jar"
     	 */
         String value = CatalinaProperties.getProperty(name + ".loader");
+        if(name.equals("server")) {
+        	System.out.println("test");
+        }
+        System.out.println();
         if ((value == null) || (value.equals("")))
             return parent;
 
