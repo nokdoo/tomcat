@@ -49,7 +49,6 @@ public final class SecurityClassLoad {
         loadTomcatPackage(loader);
     }
 
-
     private static final void loadCorePackage(ClassLoader loader) throws Exception {
         final String basePackage = "org.apache.catalina.core.";
         loader.loadClass(basePackage + "AccessLogAdapter");

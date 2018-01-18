@@ -148,9 +148,12 @@ public final class ClassLoaderFactory {
      *
      * @exception Exception if an error occurs constructing the class loader
      */
+  
     public static ClassLoader createClassLoader(List<Repository> repositories,
                                                 final ClassLoader parent)
         throws Exception {
+    	//클래스 로더의 경로를 지정해주는 과정
+    	
 
         if (log.isDebugEnabled())
             log.debug("Creating new class loader");
@@ -171,7 +174,11 @@ public final class ClassLoaderFactory {
                     if (!validateFile(directory, RepositoryType.DIR)) {
                         continue;
                     }
+                    
+                    //File to url
+                    //URLClassLoader에서 사용하기 위해서 경로를 url로 바꿈 
                     URL url = buildClassLoaderUrl(directory);
+                    
                     if (log.isDebugEnabled())
                         log.debug("  Including directory " + url);
                     set.add(url);
@@ -223,6 +230,7 @@ public final class ClassLoaderFactory {
             for (int i = 0; i < array.length; i++) {
                 log.debug("  location " + i + " is " + array[i]);
             }
+        
         /* lambda 소스로 바꿔봄 
         return AccessController.doPrivileged(
                 new PrivilegedAction<URLClassLoader>() {

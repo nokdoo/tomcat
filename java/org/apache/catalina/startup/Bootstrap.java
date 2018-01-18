@@ -166,9 +166,9 @@ public final class Bootstrap {
             }
             catalinaLoader = createClassLoader("server", commonLoader);
             sharedLoader = createClassLoader("shared", commonLoader);
-            System.out.println(System.identityHashCode(commonLoader));
-            System.out.println(System.identityHashCode(catalinaLoader));
-            System.out.println(System.identityHashCode(sharedLoader));
+            //System.out.println(System.identityHashCode(commonLoader));
+            //System.out.println(System.identityHashCode(catalinaLoader));
+            //System.out.println(System.identityHashCode(sharedLoader));
         } catch (Throwable t) {
             handleThrowable(t);
             log.error("Class loader creation threw exception", t);
@@ -187,10 +187,6 @@ public final class Bootstrap {
     	 * "${catalina.home}/lib/*.jar"
     	 */
         String value = CatalinaProperties.getProperty(name + ".loader");
-        if(name.equals("server")) {
-        	System.out.println("test");
-        }
-        System.out.println();
         if ((value == null) || (value.equals("")))
             return parent;
 
@@ -283,10 +279,15 @@ public final class Bootstrap {
      */
     public void init() throws Exception {
 
+    	//commonLoader, catalinaLoader, sharedLoader를 초기화
         initClassLoaders();
-
+        
+        //Thread a = Thread.currentThread();
+        // Thread[main,5,main]이 나온다. Thread.toString()을 살펴보자.
+        //각각 [thread 이름, 우선 순위, threadgroup 이름]이다.
         Thread.currentThread().setContextClassLoader(catalinaLoader);
 
+        //일단 패스...
         SecurityClassLoad.securityClassLoad(catalinaLoader);
 
         // Load our startup class and call its process() method

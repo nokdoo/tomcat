@@ -43,6 +43,9 @@
       logging will remain independent, even if a web application uses Apache
       Commons Logging.
     </p>
+    <p class="kor">
+	  Apache Tomcat에 대한 내부 로깅은 JULI를 사용한다. JULI는 <code>java.util.logging</code> 프레임워크를 하드 코딩한 <a href="http://commons.apache.org/logging">Apache Commons Logging</a>의 이름 다른 fork버전이다. 이것은 웹 어플리케이션이 Apache Commons Logging을 사용할지라도, 톰캣의 내부 로깅과 웹 어플리케이션 로깅이 독립적으로 남아있게 보장한다.
+    </p>
 
     <p>
       To configure Tomcat to use an alternative logging framework for its
@@ -52,10 +55,16 @@
       framework will need to be capable of working in an environment where
       different loggers with the same name may exist in different class loaders.
     </p>
+	<p class="kor">
+	  톰캣의 내부 로깅에 대한 대안적 로깅 프레임 워크를 사용하기 위한 설정을 하려면 <code>java.util.logging</code>을 사용하는 어플리케이션에 대한 로깅을 리다이렉팅하기 위해 대안적 로깅 프레임워크에서 제공하는 instructions을 따라라. 대안적 로깅 프레임워크는 같은 이름을 가진 다른 logger들이 다른 class loader에 존재하는 환경에서 작업할 수 있어야 한다.
+	</p>
 
     <p>
       A web application running on Apache Tomcat can:
     </p>
+	<p class="kor">
+	  Apache Tomcat에서 실행 중인 웹 어플리케이션은 다음을 할 수 있다.
+	</p>
     <ul>
       <li>
         Use any logging framework of its choice.
@@ -69,6 +78,18 @@
       </li>
     </ul>
 
+	<ul class="kor">
+	  <li>
+		어플리케이션이 선택한 로깅 프레임워크를 사용한다.
+	  </li>
+	  <li>
+		시스템 로깅 API, <code>java.util.logging</code>를 사용한다.
+	  </li>
+	  <li>
+		Java Servlets specification이 제공하는 로깅 API	<code>javax.servlet.ServletContext.log(...)</code>를 사용한다.
+	  </li>
+	</ul>
+
     <p>
       The logging frameworks used by different web applications are independent.
       See <a href="class-loader-howto.html">class loading</a> for more details.
@@ -77,6 +98,9 @@
       shared across web applications because it is loaded by the system class
       loader.
     </p>
+	<p class="kor">
+	  다른 웹 어플리케이션에서 사용되는 로깅 프레임워크는 독립적이다. 자세한 내용은<a href="class-loader-howto.html">class loading</a>을 보자. 이 규칙의 예외는 <code>java.util.logging</code>이다. <code>java.util.logging</code>이 당신의 로깅 라이브러리에 의해 직접적이든 간접적이든 사용된다면, 라이브러리의 각 요소들은 system class loader에 의해 로드되기 때문에 웹 어플리케이션 간 공유될 것이다.
+	</p>
 
     <subsection name="Java logging API &#8212; java.util.logging">
 
@@ -90,6 +114,9 @@
       is unloaded from memory, so that the references to its classes can be
       cleared, preventing memory leaks.
     </p>
+	<p class="kor">
+	  Apache Tomcat은 <code>java.util.logging</code> API의 몇 가지 키 요소에 대한 자신만의 implementation을 가지고 있다. 이 implementation은 JULI라고 부른다. key component는 사용자 정의 LogManager implementation이며, 톰캣과 다른 class loader에서 실행 중인 다른 웹 어플리케이션을 인지한다. 이것은 어플리케이션 별 비공개 로깅 설정을 지원한다. 또한 웹 어플리케이션이 메모리에서 언로드된다면 톰캣으로부터 알림을 받을 것이고, 클래스에 대한 참조를 제거하고 memory leak을 방지한다.
+	</p>
 
     <p>
       This <code>java.util.logging</code> implementation is enabled by providing
@@ -98,16 +125,25 @@
       Tomcat (such as jsvc, or running Tomcat from within an IDE), you should
       take care of them by yourself.
     </p>
+	<p class="kor">
+      이 <code>java.util.logging</code> implementation은 자바가 실행될 때 특정 시스템 프로퍼티를 제공함으로써 활성화된다. Apache Tomcat startup script는 이것을 위함이다. 하지만 당신이 톰캣을 실행시키기 위해 다른 툴을 사용한다면(IDE에서 톰캣을 실행시키거나 jsvc같은) 이것들에 주의를 기울어야 한다.
+	</p>
 
     <p>
       More details about java.util.logging may be found in the documentation
       for your JDK and on its Javadoc pages for the <code>java.util.logging</code>
       package.
     </p>
+	<p class="kor">
+	  java.util.logging에 대한 자세한 정보는 JDK문서와 <code>java.util.logging</code> 패키지에 대한 Javadoc 페이지에서 찾을 수 있다.
+	</p>
 
     <p>
       More details about Tomcat JULI may be found below.
     </p>
+	<p class="kor">
+	  Tomcat JULI에 대한 자세한 정보는 아래서 볼 수 있다.
+	</p>
 
     </subsection>
 
@@ -118,11 +154,17 @@
       log messages are handled by internal Tomcat logging. Such messages are
       logged to the category named
     </p>
+	<p class="kor">
+	  로그 메세지를 작성하기 위해 <code>javax.servlet.ServletContext.log(...)</code>를 호출하는 것은 내부 톰캣 로깅에 의해 핸들링된다. 로그 메세지는 다음의 이름을 가진 카테고리에 기록된다.
+	</p>
       <source>org.apache.catalina.core.ContainerBase.[${engine}].[${host}].[${context}]</source>
     <p>
       This logging is performed according to the Tomcat logging configuration. You
       cannot overwrite it in a web application.
     </p>
+	<p class="kor">
+	  이 로깅은 Tomcat logging configuration에 따라 수행된다. 웹 어플리케이션에서 이를 덮어씌울 수 없다.
+	</p>
 
     <p>
       The Servlets logging API predates the <code>java.util.logging</code> API
@@ -135,6 +177,10 @@
       are logged at the SEVERE level.
     </p>
 
+	<p class="kor">
+	  Servlets logging API는 지금 자바에서 제공되고 있는 <code>java.util.logging</code> API보다 일찍 나왔다. 따라서 이것은 많은 옵션을 제공하지 않는다. 예로써, 로그 레벨을 제어할 수 없다. 그럼에도 Apache Tomcat implementation에서 <code>ServletContext.log(String)</code> 또는 <code>GenericServlet.log(String)</code>을 호출하는 것이 INFO 레벨에 기록되는 것은 주목할 만 하다. <code>ServletContext.log(String, Throwable)</code> 또는 <code>GenericServlet.log(String, Throwable)</code>을 호출하는 것은 SEVERE 레벨에 기록된다. 
+	</p>
+
     </subsection>
 
     <subsection name="Console">
@@ -146,22 +192,35 @@
       Whatever is written to <code>System.err/out</code> will be caught into
       that file. That may include:
     </p>
+	<p class="kor">
+	  유닉스에서 톰캣이 실행 중이라면 콘솔 출력은 일반적으로 <code>catalina.out</code> 파일에 리다이렉팅 된다. 이 파일의 이름은 환경 변수를 이용하여 설정될 수 있다(startup script를 보자). <code>System.err/out</code>에 무엇이 작성되었건 이는 앞의 파일에서 캐치될 것이고 다음을 포함한다.
+	</p>
 
     <ul>
       <li>Uncaught exceptions printed by <code>java.lang.ThreadGroup.uncaughtException(..)</code></li>
       <li>Thread dumps, if you requested them via a system signal</li>
     </ul>
 
+    <ul class="kor">
+      <li><code>java.lang.ThreadGroup.uncaughtException(..)</code>에 의해 프린트 되는 걸러지지 않은 예외들</li>
+      <li>system signal을 통해 요청한 경우 Thread dumps</li>
+    </ul>
     <p>
       When running as a service on Windows, the console output is also caught
       and redirected, but the file names are different.
     </p>
+    <p class="kor">
+      윈도우 서비스로서 실행 중이라도 콘솔 출력은 캐치되고 리다이렉트 되지만 파일의 이름은 다르다.
+	</p>
 
     <p>
       The default logging configuration in Apache Tomcat writes the same
       messages to the console and to a log file. This is great when using
       Tomcat for development, but usually is not needed in production.
     </p>
+	<p class="kor">
+	  Apache Tomcat의 기본 로깅 설정은 같은 메세지를 콘솔과 로그 파일에 작성한다. 이것은 개발 시 톰캣을 사용할 경우 좋지만, 일반적으로 production 시에는 필요하지 않다.
+	</p>
 
     <p>
       Old applications that still use <code>System.out</code> or <code>System.err</code>
@@ -180,6 +239,12 @@
       as those start early and may obtain a direct reference to the streams
       before the redirection takes place.
     </p>
+	<p class="kor">
+	  여전히 <code>System.out</code> 또는 <code>System.err</code>을 사용하는 오래된 어플리케이션은 <a href="config/context.html">Context</a>의 <code>swallowOutput</code>속성을 설정하여 트릭을 쓸 수 있다. 이 속성이 <code>true</code>로 설정된다면, 요청 처리 중에 <code>System.out/err</code> 호출이 인터셉트되고, 이 출력은 <code>javax.servlet.ServletContext.log(...)</code> 호출을 사용하는 로깅 subsystem에 전달될 것이다.<br>
+	  <code>swallowOutput</code>특성은 사실 트릭이며 이 인터셉트는 제약을 가지고 있음을 <strong>주목하라</strong>. 이것은 오직 <code>System.out/err</code>에 대한 직접 호출을 할 때와 요청 처리 사이클 도중에만 동작한다. 이것은 어플리케이션에 의해 생성될 수 있는 다른 스레드에서 동작하지 않을 것이다. 이것은 system stream에 직접 작성하는 로깅 프레임워크를 인터셉트하기 위해서 사용될 수 없다. 이것은 로깅 프레임워크가 일찍 시작되고 리다이렉팅이 발생하기 전에 stream에 대한 참조를 직접 얻기 때문이다.
+
+	</p>
+
 
     </subsection>
 
