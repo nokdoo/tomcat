@@ -44,6 +44,7 @@ class DirectJDKLog implements Log {
             try {
                 Class.forName(SIMPLE_CFG).getConstructor().newInstance();
             } catch( Throwable t ) {
+            	//없는데 왜 굳이..?
             }
             try {
                 Formatter fmt= (Formatter) Class.forName(System.getProperty(

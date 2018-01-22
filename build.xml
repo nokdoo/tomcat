@@ -675,7 +675,8 @@
       <exclude name="org/apache/naming/factory/webservices/**" />
     </javac>
     <!-- Copy static resource files -->
-    <copy todir="${tomcat.classes}" encoding="ISO-8859-1">
+  	<!-- 왜인지는 모르겠으나 @VERSION@등의 값들이 바뀌지 않음. 그래서 빌드를 통해 다시 시도함 -->
+    <copy todir="${tomcat.classes}" overwrite="true" encoding="ISO-8859-1">
       <filterset refid="version.filters"/>
       <fileset dir="java">
         <include name="**/*.properties"/>

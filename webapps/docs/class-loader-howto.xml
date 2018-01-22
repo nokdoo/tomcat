@@ -261,7 +261,7 @@ loading looks in the following repositories, in this order:</p>
 <code>&lt;Loader delegate=&quot;true&quot;/&gt;</code>
 then the order becomes:</p>
 
-<p>
+<p class="kor">
 	웹 어플리케이션 클래스 로더가 <code>&lt;Loader delegate=&quot;true&quot;/&gt;</code>로 구성되어 있다면 다음 순서를 따른다.
 
 </p>

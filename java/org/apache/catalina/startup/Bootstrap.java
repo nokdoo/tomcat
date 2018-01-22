@@ -153,10 +153,43 @@ public final class Bootstrap {
      * 					   commonLoader
      * 							|
      * 					/				\
-     *           catalinaLoader    sharedLoader
+     *           catalinaLoader(server)    sharedLoader
      *           근데 두 클래스 로더의 프로퍼가 catalina.properties에 존재하지 않아서 
      *           두 변수 모두 parent(commonLoader)를 가리킴 
      */
+    
+    /*
+     * common classloader
+     * [
+     * file:/home/nokdoo/apache-tomcat-9.0.2-src/output/build/lib/, 
+     * file:/home/nokdoo/apache-tomcat-9.0.2-src/output/build/lib/tomcat-jni.jar, 
+     * file:/home/nokdoo/apache-tomcat-9.0.2-src/output/build/lib/catalina-tribes.jar, 
+     * file:/home/nokdoo/apache-tomcat-9.0.2-src/output/build/lib/catalina-storeconfig.jar, 
+     * file:/home/nokdoo/apache-tomcat-9.0.2-src/output/build/lib/jaspic-api.jar, 
+     * file:/home/nokdoo/apache-tomcat-9.0.2-src/output/build/lib/websocket-api.jar, 
+     * file:/home/nokdoo/apache-tomcat-9.0.2-src/output/build/lib/tomcat-coyote.jar, 
+     * file:/home/nokdoo/apache-tomcat-9.0.2-src/output/build/lib/tomcat-util.jar, 
+     * file:/home/nokdoo/apache-tomcat-9.0.2-src/output/build/lib/tomcat-i18n-es.jar, 
+     * file:/home/nokdoo/apache-tomcat-9.0.2-src/output/build/lib/catalina-ant.jar, 
+     * file:/home/nokdoo/apache-tomcat-9.0.2-src/output/build/lib/tomcat-jdbc.jar, 
+     * file:/home/nokdoo/apache-tomcat-9.0.2-src/output/build/lib/tomcat-i18n-ja.jar, 
+     * file:/home/nokdoo/apache-tomcat-9.0.2-src/output/build/lib/tomcat-websocket.jar, 
+     * file:/home/nokdoo/apache-tomcat-9.0.2-src/output/build/lib/servlet-api.jar, 
+     * file:/home/nokdoo/apache-tomcat-9.0.2-src/output/build/lib/jasper.jar, 
+     * file:/home/nokdoo/apache-tomcat-9.0.2-src/output/build/lib/tomcat-api.jar, 
+     * file:/home/nokdoo/apache-tomcat-9.0.2-src/output/build/lib/annotations-api.jar, 
+     * file:/home/nokdoo/apache-tomcat-9.0.2-src/output/build/lib/jasper-el.jar, 
+     * file:/home/nokdoo/apache-tomcat-9.0.2-src/output/build/lib/catalina.jar, 
+     * file:/home/nokdoo/apache-tomcat-9.0.2-src/output/build/lib/el-api.jar, 
+     * file:/home/nokdoo/apache-tomcat-9.0.2-src/output/build/lib/catalina-ha.jar, 
+     * file:/home/nokdoo/apache-tomcat-9.0.2-src/output/build/lib/tomcat-i18n-fr.jar, 
+     * file:/home/nokdoo/apache-tomcat-9.0.2-src/output/build/lib/jsp-api.jar, 
+     * file:/home/nokdoo/apache-tomcat-9.0.2-src/output/build/lib/tomcat-util-scan.jar, 
+     * file:/home/nokdoo/apache-tomcat-9.0.2-src/output/build/lib/ecj-4.6.3.jar, 
+     * file:/home/nokdoo/apache-tomcat-9.0.2-src/output/build/lib/tomcat-dbcp.jar
+     * ]
+     */
+    
     private void initClassLoaders() {
         try {
             commonLoader = createClassLoader("common", null);
@@ -164,6 +197,9 @@ public final class Bootstrap {
                 // no config file, default to this loader - we might be in a 'single' env.
                 commonLoader=this.getClass().getClassLoader();
             }
+            
+            //여기에서 각각 return parent(commonLoader)가 반환되어 
+            //common, catalina, shared Loader는 모두 같다.
             catalinaLoader = createClassLoader("server", commonLoader);
             sharedLoader = createClassLoader("shared", commonLoader);
             //System.out.println(System.identityHashCode(commonLoader));
@@ -293,6 +329,7 @@ public final class Bootstrap {
         // Load our startup class and call its process() method
         if (log.isDebugEnabled())
             log.debug("Loading startup class");
+        
         Class<?> startupClass = catalinaLoader.loadClass("org.apache.catalina.startup.Catalina");
         Object startupInstance = startupClass.getConstructor().newInstance();
 
@@ -308,6 +345,7 @@ public final class Bootstrap {
             startupInstance.getClass().getMethod(methodName, paramTypes);
         method.invoke(startupInstance, paramValues);
 
+        //catalinaDaemon = instance of org.apache.catalina.startup.Catalina
         catalinaDaemon = startupInstance;
 
     }

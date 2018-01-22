@@ -83,6 +83,7 @@ public class Catalina {
     /**
      * Use await.
      */
+    //Bootstrap에 의해 true로 됨.
     protected boolean await = false;
 
     /**

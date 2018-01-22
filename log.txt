@@ -1,0 +1,277 @@
+Buildfile: /home/nokdoo/apache-tomcat-9.0.2-src/build.xml
+
+download-compile:
+
+testexist:
+     [echo] Testing  for /home/nokdoo/tomcat-build-libs/tomcat-native-1.2.16/tomcat-native.tar.gz
+
+downloadfile-2:
+
+testexist:
+     [echo] Testing  for /home/nokdoo/tomcat-build-libs/commons-daemon-1.1.0/commons-daemon-1.1.0.jar
+
+downloadgz-2:
+
+testexist:
+     [echo] Testing  for /home/nokdoo/tomcat-build-libs/commons-daemon-1.1.0/commons-daemon-1.1.0-native-src.tar.gz
+
+downloadfile-2:
+
+testexist:
+     [echo] Testing  for /home/nokdoo/tomcat-build-libs/ecj-4.6.3/ecj-4.6.3.jar
+
+downloadfile-2:
+
+build-prepare:
+    [mkdir] Created dir: /home/nokdoo/apache-tomcat-9.0.2-src/output/classes
+    [mkdir] Created dir: /home/nokdoo/apache-tomcat-9.0.2-src/output/build
+    [mkdir] Created dir: /home/nokdoo/apache-tomcat-9.0.2-src/output/build/bin
+    [mkdir] Created dir: /home/nokdoo/apache-tomcat-9.0.2-src/output/build/conf
+    [mkdir] Created dir: /home/nokdoo/apache-tomcat-9.0.2-src/output/build/lib
+    [mkdir] Created dir: /home/nokdoo/apache-tomcat-9.0.2-src/output/build/logs
+    [mkdir] Created dir: /home/nokdoo/apache-tomcat-9.0.2-src/output/build/temp
+    [mkdir] Created dir: /home/nokdoo/apache-tomcat-9.0.2-src/output/build/webapps
+
+compile-prepare:
+     [copy] Copying 1 file to /home/nokdoo/apache-tomcat-9.0.2-src/java/org/apache/catalina/startup
+     [copy] Copying 1 file to /home/nokdoo/apache-tomcat-9.0.2-src/webapps/docs
+
+download-validate:
+
+validate:
+
+compile:
+    [javac] Compiling 1607 source files to /home/nokdoo/apache-tomcat-9.0.2-src/output/classes
+    [javac] warning: [options] bootstrap class path not set in conjunction with -source 1.8
+    [javac] Note: Some input files use or override a deprecated API.
+    [javac] Note: Recompile with -Xlint:deprecation for details.
+    [javac] 1 warning
+    [javac] Creating empty /home/nokdoo/apache-tomcat-9.0.2-src/output/classes/org/apache/tomcat/util/http/fileupload/servlet/package-info.class
+    [javac] Creating empty /home/nokdoo/apache-tomcat-9.0.2-src/output/classes/org/apache/tomcat/websocket/pojo/package-info.class
+    [javac] Creating empty /home/nokdoo/apache-tomcat-9.0.2-src/output/classes/org/apache/tomcat/util/http/fileupload/disk/package-info.class
+    [javac] Creating empty /home/nokdoo/apache-tomcat-9.0.2-src/output/classes/org/apache/tomcat/util/http/fileupload/package-info.class
+    [javac] Creating empty /home/nokdoo/apache-tomcat-9.0.2-src/output/classes/org/apache/tomcat/dbcp/dbcp2/datasources/package-info.class
+    [javac] Creating empty /home/nokdoo/apache-tomcat-9.0.2-src/output/classes/org/apache/tomcat/dbcp/dbcp2/cpdsadapter/package-info.class
+    [javac] Creating empty /home/nokdoo/apache-tomcat-9.0.2-src/output/classes/org/apache/tomcat/util/http/fileupload/util/mime/package-info.class
+    [javac] Creating empty /home/nokdoo/apache-tomcat-9.0.2-src/output/classes/org/apache/tomcat/util/http/fileupload/util/package-info.class
+    [javac] Creating empty /home/nokdoo/apache-tomcat-9.0.2-src/output/classes/org/apache/tomcat/dbcp/dbcp2/package-info.class
+    [javac] Creating empty /home/nokdoo/apache-tomcat-9.0.2-src/output/classes/org/apache/tomcat/websocket/server/package-info.class
+    [javac] Creating empty /home/nokdoo/apache-tomcat-9.0.2-src/output/classes/org/apache/tomcat/util/descriptor/tld/package-info.class
+     [copy] Copying 224 files to /home/nokdoo/apache-tomcat-9.0.2-src/output/classes
+
+build-manifests:
+    [mkdir] Created dir: /home/nokdoo/apache-tomcat-9.0.2-src/output/manifests
+     [copy] Copying 19 files to /home/nokdoo/apache-tomcat-9.0.2-src/output/manifests
+
+package:
+      [jar] Building jar: /home/nokdoo/apache-tomcat-9.0.2-src/output/build/lib/annotations-api.jar
+      [jar] Building jar: /home/nokdoo/apache-tomcat-9.0.2-src/output/build/lib/servlet-api.jar
+      [jar] Building jar: /home/nokdoo/apache-tomcat-9.0.2-src/output/build/lib/jsp-api.jar
+      [jar] Building jar: /home/nokdoo/apache-tomcat-9.0.2-src/output/build/lib/el-api.jar
+      [jar] Building jar: /home/nokdoo/apache-tomcat-9.0.2-src/output/build/lib/websocket-api.jar
+      [jar] Building jar: /home/nokdoo/apache-tomcat-9.0.2-src/output/build/lib/jaspic-api.jar
+      [jar] Building jar: /home/nokdoo/apache-tomcat-9.0.2-src/output/build/lib/tomcat-websocket.jar
+      [jar] Building jar: /home/nokdoo/apache-tomcat-9.0.2-src/output/build/bin/bootstrap.jar
+      [jar] Building jar: /home/nokdoo/apache-tomcat-9.0.2-src/output/build/bin/tomcat-juli.jar
+      [jar] Building jar: /home/nokdoo/apache-tomcat-9.0.2-src/output/build/lib/catalina.jar
+      [jar] Building jar: /home/nokdoo/apache-tomcat-9.0.2-src/output/build/lib/catalina-tribes.jar
+      [jar] Building jar: /home/nokdoo/apache-tomcat-9.0.2-src/output/build/lib/catalina-ha.jar
+      [jar] Building jar: /home/nokdoo/apache-tomcat-9.0.2-src/output/build/lib/catalina-ant.jar
+      [jar] Building jar: /home/nokdoo/apache-tomcat-9.0.2-src/output/build/lib/catalina-storeconfig.jar
+      [jar] Building jar: /home/nokdoo/apache-tomcat-9.0.2-src/output/build/lib/tomcat-api.jar
+      [jar] Building jar: /home/nokdoo/apache-tomcat-9.0.2-src/output/build/lib/tomcat-util.jar
+      [jar] Building jar: /home/nokdoo/apache-tomcat-9.0.2-src/output/build/lib/tomcat-util-scan.jar
+      [jar] Building jar: /home/nokdoo/apache-tomcat-9.0.2-src/output/build/lib/tomcat-coyote.jar
+      [jar] Building jar: /home/nokdoo/apache-tomcat-9.0.2-src/output/build/lib/tomcat-jni.jar
+      [jar] Building jar: /home/nokdoo/apache-tomcat-9.0.2-src/output/build/lib/jasper.jar
+      [jar] Building jar: /home/nokdoo/apache-tomcat-9.0.2-src/output/build/lib/jasper-el.jar
+      [jar] Building jar: /home/nokdoo/apache-tomcat-9.0.2-src/output/build/lib/tomcat-dbcp.jar
+      [jar] Building jar: /home/nokdoo/apache-tomcat-9.0.2-src/output/build/lib/tomcat-i18n-es.jar
+      [jar] Building jar: /home/nokdoo/apache-tomcat-9.0.2-src/output/build/lib/tomcat-i18n-fr.jar
+      [jar] Building jar: /home/nokdoo/apache-tomcat-9.0.2-src/output/build/lib/tomcat-i18n-ja.jar
+
+build-docs:
+     [copy] Copying 34 files to /home/nokdoo/apache-tomcat-9.0.2-src/output/build/webapps
+     [copy] Copying 5 files to /home/nokdoo/apache-tomcat-9.0.2-src/output/build/webapps
+     [copy] Copying 2 files to /home/nokdoo/apache-tomcat-9.0.2-src/output/build/webapps/docs
+     [copy] Copying 1 file to /home/nokdoo/apache-tomcat-9.0.2-src/output/build/webapps/docs
+     [copy] Copying 1 file to /home/nokdoo/apache-tomcat-9.0.2-src/output/build/webapps/docs/appdev/sample
+    [mkdir] Created dir: /home/nokdoo/apache-tomcat-9.0.2-src/output/build/webapps/docs/funcspecs
+     [xslt] Transforming into /home/nokdoo/apache-tomcat-9.0.2-src/output/build/webapps/docs
+     [xslt] Processing /home/nokdoo/apache-tomcat-9.0.2-src/webapps/docs/aio.xml to /home/nokdoo/apache-tomcat-9.0.2-src/output/build/webapps/docs/aio.html
+     [xslt] Loading stylesheet /home/nokdoo/apache-tomcat-9.0.2-src/webapps/docs/tomcat-docs.xsl
+     [xslt] Processing /home/nokdoo/apache-tomcat-9.0.2-src/webapps/docs/apr.xml to /home/nokdoo/apache-tomcat-9.0.2-src/output/build/webapps/docs/apr.html
+     [xslt] Processing /home/nokdoo/apache-tomcat-9.0.2-src/webapps/docs/balancer-howto.xml to /home/nokdoo/apache-tomcat-9.0.2-src/output/build/webapps/docs/balancer-howto.html
+     [xslt] Processing /home/nokdoo/apache-tomcat-9.0.2-src/webapps/docs/building.xml to /home/nokdoo/apache-tomcat-9.0.2-src/output/build/webapps/docs/building.html
+     [xslt] Processing /home/nokdoo/apache-tomcat-9.0.2-src/webapps/docs/cgi-howto.xml to /home/nokdoo/apache-tomcat-9.0.2-src/output/build/webapps/docs/cgi-howto.html
+     [xslt] Processing /home/nokdoo/apache-tomcat-9.0.2-src/webapps/docs/changelog.xml to /home/nokdoo/apache-tomcat-9.0.2-src/output/build/webapps/docs/changelog.html
+     [xslt] Processing /home/nokdoo/apache-tomcat-9.0.2-src/webapps/docs/class-loader-howto.xml to /home/nokdoo/apache-tomcat-9.0.2-src/output/build/webapps/docs/class-loader-howto.html
+     [xslt] Processing /home/nokdoo/apache-tomcat-9.0.2-src/webapps/docs/cluster-howto.xml to /home/nokdoo/apache-tomcat-9.0.2-src/output/build/webapps/docs/cluster-howto.html
+     [xslt] Processing /home/nokdoo/apache-tomcat-9.0.2-src/webapps/docs/comments.xml to /home/nokdoo/apache-tomcat-9.0.2-src/output/build/webapps/docs/comments.html
+     [xslt] Processing /home/nokdoo/apache-tomcat-9.0.2-src/webapps/docs/connectors.xml to /home/nokdoo/apache-tomcat-9.0.2-src/output/build/webapps/docs/connectors.html
+     [xslt] Processing /home/nokdoo/apache-tomcat-9.0.2-src/webapps/docs/default-servlet.xml to /home/nokdoo/apache-tomcat-9.0.2-src/output/build/webapps/docs/default-servlet.html
+     [xslt] Processing /home/nokdoo/apache-tomcat-9.0.2-src/webapps/docs/deployer-howto.xml to /home/nokdoo/apache-tomcat-9.0.2-src/output/build/webapps/docs/deployer-howto.html
+     [xslt] Processing /home/nokdoo/apache-tomcat-9.0.2-src/webapps/docs/developers.xml to /home/nokdoo/apache-tomcat-9.0.2-src/output/build/webapps/docs/developers.html
+     [xslt] Processing /home/nokdoo/apache-tomcat-9.0.2-src/webapps/docs/extras.xml to /home/nokdoo/apache-tomcat-9.0.2-src/output/build/webapps/docs/extras.html
+     [xslt] Processing /home/nokdoo/apache-tomcat-9.0.2-src/webapps/docs/html-manager-howto.xml to /home/nokdoo/apache-tomcat-9.0.2-src/output/build/webapps/docs/html-manager-howto.html
+     [xslt] Processing /home/nokdoo/apache-tomcat-9.0.2-src/webapps/docs/index.xml to /home/nokdoo/apache-tomcat-9.0.2-src/output/build/webapps/docs/index.html
+     [xslt] Processing /home/nokdoo/apache-tomcat-9.0.2-src/webapps/docs/introduction.xml to /home/nokdoo/apache-tomcat-9.0.2-src/output/build/webapps/docs/introduction.html
+     [xslt] Processing /home/nokdoo/apache-tomcat-9.0.2-src/webapps/docs/jasper-howto.xml to /home/nokdoo/apache-tomcat-9.0.2-src/output/build/webapps/docs/jasper-howto.html
+     [xslt] Processing /home/nokdoo/apache-tomcat-9.0.2-src/webapps/docs/jdbc-pool.xml to /home/nokdoo/apache-tomcat-9.0.2-src/output/build/webapps/docs/jdbc-pool.html
+     [xslt] Processing /home/nokdoo/apache-tomcat-9.0.2-src/webapps/docs/jndi-datasource-examples-howto.xml to /home/nokdoo/apache-tomcat-9.0.2-src/output/build/webapps/docs/jndi-datasource-examples-howto.html
+     [xslt] Processing /home/nokdoo/apache-tomcat-9.0.2-src/webapps/docs/jndi-resources-howto.xml to /home/nokdoo/apache-tomcat-9.0.2-src/output/build/webapps/docs/jndi-resources-howto.html
+     [xslt] Processing /home/nokdoo/apache-tomcat-9.0.2-src/webapps/docs/logging.xml to /home/nokdoo/apache-tomcat-9.0.2-src/output/build/webapps/docs/logging.html
+     [xslt] Processing /home/nokdoo/apache-tomcat-9.0.2-src/webapps/docs/manager-howto.xml to /home/nokdoo/apache-tomcat-9.0.2-src/output/build/webapps/docs/manager-howto.html
+     [xslt] Processing /home/nokdoo/apache-tomcat-9.0.2-src/webapps/docs/maven-jars.xml to /home/nokdoo/apache-tomcat-9.0.2-src/output/build/webapps/docs/maven-jars.html
+     [xslt] Processing /home/nokdoo/apache-tomcat-9.0.2-src/webapps/docs/mbeans-descriptors-howto.xml to /home/nokdoo/apache-tomcat-9.0.2-src/output/build/webapps/docs/mbeans-descriptors-howto.html
+     [xslt] Processing /home/nokdoo/apache-tomcat-9.0.2-src/webapps/docs/monitoring.xml to /home/nokdoo/apache-tomcat-9.0.2-src/output/build/webapps/docs/monitoring.html
+     [xslt] Processing /home/nokdoo/apache-tomcat-9.0.2-src/webapps/docs/proxy-howto.xml to /home/nokdoo/apache-tomcat-9.0.2-src/output/build/webapps/docs/proxy-howto.html
+     [xslt] Processing /home/nokdoo/apache-tomcat-9.0.2-src/webapps/docs/realm-howto.xml to /home/nokdoo/apache-tomcat-9.0.2-src/output/build/webapps/docs/realm-howto.html
+     [xslt] Processing /home/nokdoo/apache-tomcat-9.0.2-src/webapps/docs/rewrite.xml to /home/nokdoo/apache-tomcat-9.0.2-src/output/build/webapps/docs/rewrite.html
+     [xslt] Processing /home/nokdoo/apache-tomcat-9.0.2-src/webapps/docs/security-howto.xml to /home/nokdoo/apache-tomcat-9.0.2-src/output/build/webapps/docs/security-howto.html
+     [xslt] Processing /home/nokdoo/apache-tomcat-9.0.2-src/webapps/docs/security-manager-howto.xml to /home/nokdoo/apache-tomcat-9.0.2-src/output/build/webapps/docs/security-manager-howto.html
+     [xslt] Processing /home/nokdoo/apache-tomcat-9.0.2-src/webapps/docs/setup.xml to /home/nokdoo/apache-tomcat-9.0.2-src/output/build/webapps/docs/setup.html
+     [xslt] Processing /home/nokdoo/apache-tomcat-9.0.2-src/webapps/docs/ssi-howto.xml to /home/nokdoo/apache-tomcat-9.0.2-src/output/build/webapps/docs/ssi-howto.html
+     [xslt] Processing /home/nokdoo/apache-tomcat-9.0.2-src/webapps/docs/ssl-howto.xml to /home/nokdoo/apache-tomcat-9.0.2-src/output/build/webapps/docs/ssl-howto.html
+     [xslt] Processing /home/nokdoo/apache-tomcat-9.0.2-src/webapps/docs/virtual-hosting-howto.xml to /home/nokdoo/apache-tomcat-9.0.2-src/output/build/webapps/docs/virtual-hosting-howto.html
+     [xslt] Processing /home/nokdoo/apache-tomcat-9.0.2-src/webapps/docs/web-socket-howto.xml to /home/nokdoo/apache-tomcat-9.0.2-src/output/build/webapps/docs/web-socket-howto.html
+     [xslt] Processing /home/nokdoo/apache-tomcat-9.0.2-src/webapps/docs/windows-auth-howto.xml to /home/nokdoo/apache-tomcat-9.0.2-src/output/build/webapps/docs/windows-auth-howto.html
+     [xslt] Processing /home/nokdoo/apache-tomcat-9.0.2-src/webapps/docs/windows-service-howto.xml to /home/nokdoo/apache-tomcat-9.0.2-src/output/build/webapps/docs/windows-service-howto.html
+     [xslt] Transforming into /home/nokdoo/apache-tomcat-9.0.2-src/output/build/webapps/docs/appdev
+     [xslt] Processing /home/nokdoo/apache-tomcat-9.0.2-src/webapps/docs/appdev/deployment.xml to /home/nokdoo/apache-tomcat-9.0.2-src/output/build/webapps/docs/appdev/deployment.html
+     [xslt] Loading stylesheet /home/nokdoo/apache-tomcat-9.0.2-src/webapps/docs/tomcat-docs.xsl
+     [xslt] Processing /home/nokdoo/apache-tomcat-9.0.2-src/webapps/docs/appdev/index.xml to /home/nokdoo/apache-tomcat-9.0.2-src/output/build/webapps/docs/appdev/index.html
+     [xslt] Processing /home/nokdoo/apache-tomcat-9.0.2-src/webapps/docs/appdev/installation.xml to /home/nokdoo/apache-tomcat-9.0.2-src/output/build/webapps/docs/appdev/installation.html
+     [xslt] Processing /home/nokdoo/apache-tomcat-9.0.2-src/webapps/docs/appdev/introduction.xml to /home/nokdoo/apache-tomcat-9.0.2-src/output/build/webapps/docs/appdev/introduction.html
+     [xslt] Processing /home/nokdoo/apache-tomcat-9.0.2-src/webapps/docs/appdev/processes.xml to /home/nokdoo/apache-tomcat-9.0.2-src/output/build/webapps/docs/appdev/processes.html
+     [xslt] Processing /home/nokdoo/apache-tomcat-9.0.2-src/webapps/docs/appdev/source.xml to /home/nokdoo/apache-tomcat-9.0.2-src/output/build/webapps/docs/appdev/source.html
+     [xslt] Transforming into /home/nokdoo/apache-tomcat-9.0.2-src/output/build/webapps/docs/funcspecs
+     [xslt] Processing /home/nokdoo/apache-tomcat-9.0.2-src/webapps/docs/funcspecs/fs-admin-apps.xml to /home/nokdoo/apache-tomcat-9.0.2-src/output/build/webapps/docs/funcspecs/fs-admin-apps.html
+     [xslt] Loading stylesheet /home/nokdoo/apache-tomcat-9.0.2-src/webapps/docs/tomcat-docs.xsl
+     [xslt] Processing /home/nokdoo/apache-tomcat-9.0.2-src/webapps/docs/funcspecs/fs-admin-objects.xml to /home/nokdoo/apache-tomcat-9.0.2-src/output/build/webapps/docs/funcspecs/fs-admin-objects.html
+     [xslt] Processing /home/nokdoo/apache-tomcat-9.0.2-src/webapps/docs/funcspecs/fs-admin-opers.xml to /home/nokdoo/apache-tomcat-9.0.2-src/output/build/webapps/docs/funcspecs/fs-admin-opers.html
+     [xslt] Processing /home/nokdoo/apache-tomcat-9.0.2-src/webapps/docs/funcspecs/fs-default.xml to /home/nokdoo/apache-tomcat-9.0.2-src/output/build/webapps/docs/funcspecs/fs-default.html
+     [xslt] Processing /home/nokdoo/apache-tomcat-9.0.2-src/webapps/docs/funcspecs/fs-jdbc-realm.xml to /home/nokdoo/apache-tomcat-9.0.2-src/output/build/webapps/docs/funcspecs/fs-jdbc-realm.html
+     [xslt] Processing /home/nokdoo/apache-tomcat-9.0.2-src/webapps/docs/funcspecs/fs-jndi-realm.xml to /home/nokdoo/apache-tomcat-9.0.2-src/output/build/webapps/docs/funcspecs/fs-jndi-realm.html
+     [xslt] Processing /home/nokdoo/apache-tomcat-9.0.2-src/webapps/docs/funcspecs/fs-memory-realm.xml to /home/nokdoo/apache-tomcat-9.0.2-src/output/build/webapps/docs/funcspecs/fs-memory-realm.html
+     [xslt] Processing /home/nokdoo/apache-tomcat-9.0.2-src/webapps/docs/funcspecs/index.xml to /home/nokdoo/apache-tomcat-9.0.2-src/output/build/webapps/docs/funcspecs/index.html
+     [xslt] Processing /home/nokdoo/apache-tomcat-9.0.2-src/webapps/docs/funcspecs/mbean-names.xml to /home/nokdoo/apache-tomcat-9.0.2-src/output/build/webapps/docs/funcspecs/mbean-names.html
+     [xslt] Transforming into /home/nokdoo/apache-tomcat-9.0.2-src/output/build/webapps/docs/config
+     [xslt] Processing /home/nokdoo/apache-tomcat-9.0.2-src/webapps/docs/config/ajp.xml to /home/nokdoo/apache-tomcat-9.0.2-src/output/build/webapps/docs/config/ajp.html
+     [xslt] Loading stylesheet /home/nokdoo/apache-tomcat-9.0.2-src/webapps/docs/tomcat-docs.xsl
+     [xslt] Processing /home/nokdoo/apache-tomcat-9.0.2-src/webapps/docs/config/automatic-deployment.xml to /home/nokdoo/apache-tomcat-9.0.2-src/output/build/webapps/docs/config/automatic-deployment.html
+     [xslt] Processing /home/nokdoo/apache-tomcat-9.0.2-src/webapps/docs/config/cluster-channel.xml to /home/nokdoo/apache-tomcat-9.0.2-src/output/build/webapps/docs/config/cluster-channel.html
+     [xslt] Processing /home/nokdoo/apache-tomcat-9.0.2-src/webapps/docs/config/cluster-deployer.xml to /home/nokdoo/apache-tomcat-9.0.2-src/output/build/webapps/docs/config/cluster-deployer.html
+     [xslt] Processing /home/nokdoo/apache-tomcat-9.0.2-src/webapps/docs/config/cluster-interceptor.xml to /home/nokdoo/apache-tomcat-9.0.2-src/output/build/webapps/docs/config/cluster-interceptor.html
+     [xslt] Processing /home/nokdoo/apache-tomcat-9.0.2-src/webapps/docs/config/cluster-listener.xml to /home/nokdoo/apache-tomcat-9.0.2-src/output/build/webapps/docs/config/cluster-listener.html
+     [xslt] Processing /home/nokdoo/apache-tomcat-9.0.2-src/webapps/docs/config/cluster-manager.xml to /home/nokdoo/apache-tomcat-9.0.2-src/output/build/webapps/docs/config/cluster-manager.html
+     [xslt] Processing /home/nokdoo/apache-tomcat-9.0.2-src/webapps/docs/config/cluster-membership.xml to /home/nokdoo/apache-tomcat-9.0.2-src/output/build/webapps/docs/config/cluster-membership.html
+     [xslt] Processing /home/nokdoo/apache-tomcat-9.0.2-src/webapps/docs/config/cluster-receiver.xml to /home/nokdoo/apache-tomcat-9.0.2-src/output/build/webapps/docs/config/cluster-receiver.html
+     [xslt] Processing /home/nokdoo/apache-tomcat-9.0.2-src/webapps/docs/config/cluster-sender.xml to /home/nokdoo/apache-tomcat-9.0.2-src/output/build/webapps/docs/config/cluster-sender.html
+     [xslt] Processing /home/nokdoo/apache-tomcat-9.0.2-src/webapps/docs/config/cluster-valve.xml to /home/nokdoo/apache-tomcat-9.0.2-src/output/build/webapps/docs/config/cluster-valve.html
+     [xslt] Processing /home/nokdoo/apache-tomcat-9.0.2-src/webapps/docs/config/cluster.xml to /home/nokdoo/apache-tomcat-9.0.2-src/output/build/webapps/docs/config/cluster.html
+     [xslt] Processing /home/nokdoo/apache-tomcat-9.0.2-src/webapps/docs/config/context.xml to /home/nokdoo/apache-tomcat-9.0.2-src/output/build/webapps/docs/config/context.html
+     [xslt] Processing /home/nokdoo/apache-tomcat-9.0.2-src/webapps/docs/config/cookie-processor.xml to /home/nokdoo/apache-tomcat-9.0.2-src/output/build/webapps/docs/config/cookie-processor.html
+     [xslt] Processing /home/nokdoo/apache-tomcat-9.0.2-src/webapps/docs/config/credentialhandler.xml to /home/nokdoo/apache-tomcat-9.0.2-src/output/build/webapps/docs/config/credentialhandler.html
+     [xslt] Processing /home/nokdoo/apache-tomcat-9.0.2-src/webapps/docs/config/engine.xml to /home/nokdoo/apache-tomcat-9.0.2-src/output/build/webapps/docs/config/engine.html
+     [xslt] Processing /home/nokdoo/apache-tomcat-9.0.2-src/webapps/docs/config/executor.xml to /home/nokdoo/apache-tomcat-9.0.2-src/output/build/webapps/docs/config/executor.html
+     [xslt] Processing /home/nokdoo/apache-tomcat-9.0.2-src/webapps/docs/config/filter.xml to /home/nokdoo/apache-tomcat-9.0.2-src/output/build/webapps/docs/config/filter.html
+     [xslt] Processing /home/nokdoo/apache-tomcat-9.0.2-src/webapps/docs/config/globalresources.xml to /home/nokdoo/apache-tomcat-9.0.2-src/output/build/webapps/docs/config/globalresources.html
+     [xslt] Processing /home/nokdoo/apache-tomcat-9.0.2-src/webapps/docs/config/host.xml to /home/nokdoo/apache-tomcat-9.0.2-src/output/build/webapps/docs/config/host.html
+     [xslt] Processing /home/nokdoo/apache-tomcat-9.0.2-src/webapps/docs/config/http.xml to /home/nokdoo/apache-tomcat-9.0.2-src/output/build/webapps/docs/config/http.html
+     [xslt] Processing /home/nokdoo/apache-tomcat-9.0.2-src/webapps/docs/config/http2.xml to /home/nokdoo/apache-tomcat-9.0.2-src/output/build/webapps/docs/config/http2.html
+     [xslt] Processing /home/nokdoo/apache-tomcat-9.0.2-src/webapps/docs/config/index.xml to /home/nokdoo/apache-tomcat-9.0.2-src/output/build/webapps/docs/config/index.html
+     [xslt] Processing /home/nokdoo/apache-tomcat-9.0.2-src/webapps/docs/config/jar-scan-filter.xml to /home/nokdoo/apache-tomcat-9.0.2-src/output/build/webapps/docs/config/jar-scan-filter.html
+     [xslt] Processing /home/nokdoo/apache-tomcat-9.0.2-src/webapps/docs/config/jar-scanner.xml to /home/nokdoo/apache-tomcat-9.0.2-src/output/build/webapps/docs/config/jar-scanner.html
+     [xslt] Processing /home/nokdoo/apache-tomcat-9.0.2-src/webapps/docs/config/jaspic.xml to /home/nokdoo/apache-tomcat-9.0.2-src/output/build/webapps/docs/config/jaspic.html
+     [xslt] Processing /home/nokdoo/apache-tomcat-9.0.2-src/webapps/docs/config/listeners.xml to /home/nokdoo/apache-tomcat-9.0.2-src/output/build/webapps/docs/config/listeners.html
+     [xslt] Processing /home/nokdoo/apache-tomcat-9.0.2-src/webapps/docs/config/loader.xml to /home/nokdoo/apache-tomcat-9.0.2-src/output/build/webapps/docs/config/loader.html
+     [xslt] Processing /home/nokdoo/apache-tomcat-9.0.2-src/webapps/docs/config/manager.xml to /home/nokdoo/apache-tomcat-9.0.2-src/output/build/webapps/docs/config/manager.html
+     [xslt] Processing /home/nokdoo/apache-tomcat-9.0.2-src/webapps/docs/config/realm.xml to /home/nokdoo/apache-tomcat-9.0.2-src/output/build/webapps/docs/config/realm.html
+     [xslt] Processing /home/nokdoo/apache-tomcat-9.0.2-src/webapps/docs/config/resources.xml to /home/nokdoo/apache-tomcat-9.0.2-src/output/build/webapps/docs/config/resources.html
+     [xslt] Processing /home/nokdoo/apache-tomcat-9.0.2-src/webapps/docs/config/server.xml to /home/nokdoo/apache-tomcat-9.0.2-src/output/build/webapps/docs/config/server.html
+     [xslt] Processing /home/nokdoo/apache-tomcat-9.0.2-src/webapps/docs/config/service.xml to /home/nokdoo/apache-tomcat-9.0.2-src/output/build/webapps/docs/config/service.html
+     [xslt] Processing /home/nokdoo/apache-tomcat-9.0.2-src/webapps/docs/config/sessionidgenerator.xml to /home/nokdoo/apache-tomcat-9.0.2-src/output/build/webapps/docs/config/sessionidgenerator.html
+     [xslt] Processing /home/nokdoo/apache-tomcat-9.0.2-src/webapps/docs/config/systemprops.xml to /home/nokdoo/apache-tomcat-9.0.2-src/output/build/webapps/docs/config/systemprops.html
+     [xslt] Processing /home/nokdoo/apache-tomcat-9.0.2-src/webapps/docs/config/valve.xml to /home/nokdoo/apache-tomcat-9.0.2-src/output/build/webapps/docs/config/valve.html
+     [xslt] Transforming into /home/nokdoo/apache-tomcat-9.0.2-src/output/build/webapps/docs/architecture
+     [xslt] Processing /home/nokdoo/apache-tomcat-9.0.2-src/webapps/docs/architecture/index.xml to /home/nokdoo/apache-tomcat-9.0.2-src/output/build/webapps/docs/architecture/index.html
+     [xslt] Loading stylesheet /home/nokdoo/apache-tomcat-9.0.2-src/webapps/docs/tomcat-docs.xsl
+     [xslt] Processing /home/nokdoo/apache-tomcat-9.0.2-src/webapps/docs/architecture/overview.xml to /home/nokdoo/apache-tomcat-9.0.2-src/output/build/webapps/docs/architecture/overview.html
+     [xslt] Processing /home/nokdoo/apache-tomcat-9.0.2-src/webapps/docs/architecture/requestProcess.xml to /home/nokdoo/apache-tomcat-9.0.2-src/output/build/webapps/docs/architecture/requestProcess.html
+     [xslt] Processing /home/nokdoo/apache-tomcat-9.0.2-src/webapps/docs/architecture/startup.xml to /home/nokdoo/apache-tomcat-9.0.2-src/output/build/webapps/docs/architecture/startup.html
+     [xslt] Transforming into /home/nokdoo/apache-tomcat-9.0.2-src/output/build/webapps/docs/tribes
+     [xslt] Processing /home/nokdoo/apache-tomcat-9.0.2-src/webapps/docs/tribes/developers.xml to /home/nokdoo/apache-tomcat-9.0.2-src/output/build/webapps/docs/tribes/developers.html
+     [xslt] Loading stylesheet /home/nokdoo/apache-tomcat-9.0.2-src/webapps/docs/tomcat-docs.xsl
+     [xslt] Processing /home/nokdoo/apache-tomcat-9.0.2-src/webapps/docs/tribes/faq.xml to /home/nokdoo/apache-tomcat-9.0.2-src/output/build/webapps/docs/tribes/faq.html
+     [xslt] Processing /home/nokdoo/apache-tomcat-9.0.2-src/webapps/docs/tribes/interceptors.xml to /home/nokdoo/apache-tomcat-9.0.2-src/output/build/webapps/docs/tribes/interceptors.html
+     [xslt] Processing /home/nokdoo/apache-tomcat-9.0.2-src/webapps/docs/tribes/introduction.xml to /home/nokdoo/apache-tomcat-9.0.2-src/output/build/webapps/docs/tribes/introduction.html
+     [xslt] Processing /home/nokdoo/apache-tomcat-9.0.2-src/webapps/docs/tribes/membership.xml to /home/nokdoo/apache-tomcat-9.0.2-src/output/build/webapps/docs/tribes/membership.html
+     [xslt] Processing /home/nokdoo/apache-tomcat-9.0.2-src/webapps/docs/tribes/setup.xml to /home/nokdoo/apache-tomcat-9.0.2-src/output/build/webapps/docs/tribes/setup.html
+     [xslt] Processing /home/nokdoo/apache-tomcat-9.0.2-src/webapps/docs/tribes/status.xml to /home/nokdoo/apache-tomcat-9.0.2-src/output/build/webapps/docs/tribes/status.html
+     [xslt] Processing /home/nokdoo/apache-tomcat-9.0.2-src/webapps/docs/tribes/transport.xml to /home/nokdoo/apache-tomcat-9.0.2-src/output/build/webapps/docs/tribes/transport.html
+
+build-tomcat-jdbc:
+     [echo] Building Tomcat JDBC pool libraries
+
+prepare:
+    [mkdir] Created dir: /home/nokdoo/apache-tomcat-9.0.2-src/output/jdbc-pool/build
+    [mkdir] Created dir: /home/nokdoo/apache-tomcat-9.0.2-src/output/jdbc-pool/classes
+    [mkdir] Created dir: /home/nokdoo/apache-tomcat-9.0.2-src/output/jdbc-pool/testclasses
+     [copy] Copying 7 files to /home/nokdoo/apache-tomcat-9.0.2-src/output/jdbc-pool
+
+download:
+
+build-src:
+      [jar] Building jar: /home/nokdoo/apache-tomcat-9.0.2-src/output/jdbc-pool/tomcat-jdbc-src.jar
+
+build:
+    [javac] Compiling 33 source files to /home/nokdoo/apache-tomcat-9.0.2-src/output/jdbc-pool/classes
+    [javac] warning: [options] bootstrap class path not set in conjunction with -source 1.8
+    [javac] Note: Some input files use or override a deprecated API.
+    [javac] Note: Recompile with -Xlint:deprecation for details.
+    [javac] 1 warning
+      [jar] Building jar: /home/nokdoo/apache-tomcat-9.0.2-src/output/jdbc-pool/tomcat-jdbc.jar
+     [copy] Copying 1 file to /home/nokdoo/apache-tomcat-9.0.2-src/output/build/lib
+
+compile-webapp-examples:
+    [mkdir] Created dir: /home/nokdoo/apache-tomcat-9.0.2-src/output/build/webapps/examples/WEB-INF/classes
+    [javac] Compiling 73 source files to /home/nokdoo/apache-tomcat-9.0.2-src/output/build/webapps/examples/WEB-INF/classes
+    [javac] warning: [options] bootstrap class path not set in conjunction with -source 1.8
+    [javac] 1 warning
+    [mkdir] Created dir: /home/nokdoo/apache-tomcat-9.0.2-src/output/build/webapps/examples/jsp/plugin/applet
+    [javac] Compiling 1 source file to /home/nokdoo/apache-tomcat-9.0.2-src/output/build/webapps/examples/jsp/plugin/applet
+    [javac] warning: [options] bootstrap class path not set in conjunction with -source 1.8
+    [javac] Note: /home/nokdoo/apache-tomcat-9.0.2-src/webapps/examples/jsp/plugin/applet/Clock2.java uses or overrides a deprecated API.
+    [javac] Note: Recompile with -Xlint:deprecation for details.
+    [javac] 1 warning
+
+deploy:
+     [copy] Copying 1 file to /home/nokdoo/apache-tomcat-9.0.2-src/output/build/bin
+     [copy] Copying 1 file to /home/nokdoo/apache-tomcat-9.0.2-src/output/build/bin
+     [copy] Copying 1 file to /home/nokdoo/apache-tomcat-9.0.2-src/output/build/bin
+     [copy] Copying 1 file to /home/nokdoo/apache-tomcat-9.0.2-src/output/build/bin
+     [copy] Copying 20 files to /home/nokdoo/apache-tomcat-9.0.2-src/output/build/bin
+     [copy] Copying 10 files to /home/nokdoo/apache-tomcat-9.0.2-src/output/build/conf
+     [copy] Copying 241 files to /home/nokdoo/apache-tomcat-9.0.2-src/output/build/webapps
+     [copy] Copying 1 file to /home/nokdoo/apache-tomcat-9.0.2-src/output/build/webapps
+     [copy] Copying 1 file to /home/nokdoo/apache-tomcat-9.0.2-src/output/build/webapps/ROOT
+     [copy] Copying 1 file to /home/nokdoo/apache-tomcat-9.0.2-src/output/build/lib
+
+examples-sources:
+ [txt2html] Converted 1 file to /home/nokdoo/apache-tomcat-9.0.2-src/output/build/webapps/examples/jsp/jsp2/simpletag
+ [txt2html] Converted 4 files to /home/nokdoo/apache-tomcat-9.0.2-src/output/build/webapps/examples/jsp/jsp2/simpletag
+ [txt2html] Converted 5 files to /home/nokdoo/apache-tomcat-9.0.2-src/output/build/webapps/examples/jsp/jsp2/simpletag
+ [txt2html] Converted 1 file to /home/nokdoo/apache-tomcat-9.0.2-src/output/build/webapps/examples/jsp/jsp2/jspattribute
+ [txt2html] Converted 4 files to /home/nokdoo/apache-tomcat-9.0.2-src/output/build/webapps/examples/jsp/jsp2/jspattribute
+ [txt2html] Converted 4 files to /home/nokdoo/apache-tomcat-9.0.2-src/output/build/webapps/examples/jsp/cal
+ [txt2html] Converted 1 file to /home/nokdoo/apache-tomcat-9.0.2-src/output/build/webapps/examples/jsp/jsptoserv
+ [txt2html] Converted 1 file to /home/nokdoo/apache-tomcat-9.0.2-src/output/build/webapps/examples/jsp/jsp2/el
+ [txt2html] Converted 2 files to /home/nokdoo/apache-tomcat-9.0.2-src/output/build/webapps/examples/jsp/jsp2/el
+ [txt2html] Converted 3 files to /home/nokdoo/apache-tomcat-9.0.2-src/output/build/webapps/examples/jsp/jsp2/el
+ [txt2html] Converted 1 file to /home/nokdoo/apache-tomcat-9.0.2-src/output/build/webapps/examples/jsp/jsp2/misc
+ [txt2html] Converted 3 files to /home/nokdoo/apache-tomcat-9.0.2-src/output/build/webapps/examples/jsp/jsp2/tagfiles
+ [txt2html] Converted 48 files to /home/nokdoo/apache-tomcat-9.0.2-src/output/build/webapps/examples
+
+BUILD SUCCESSFUL
+Total time: 29 seconds

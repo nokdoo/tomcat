@@ -74,6 +74,8 @@ public class LogFactory {
         // constructor taking the String name.
         ServiceLoader<Log> logLoader = ServiceLoader.load(Log.class);
         Constructor<? extends Log> m=null;
+        
+        //null이라 패스하고 DirectJDKLog 생성
         for (Log log: logLoader) {
             Class<? extends Log> c=log.getClass();
             try {
