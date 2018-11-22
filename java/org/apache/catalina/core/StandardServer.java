@@ -108,6 +108,7 @@ public final class StandardServer extends LifecycleMBeanBase implements Server {
     private final NamingContextListener namingContextListener;
 
 
+    //HTW : shutdown 커맨드를 기다리는 서버의 포트를 정의함.
     /**
      * The port number on which we wait for shutdown commands.
      */
@@ -133,6 +134,7 @@ public final class StandardServer extends LifecycleMBeanBase implements Server {
     private final Object servicesLock = new Object();
 
 
+    //HTW : 서버를 종료시키기 위해, Server instance에 전달되어야 하는 문자열을 가지고 있음.
     /**
      * The shutdown command string we are looking for.
      */
@@ -343,9 +345,11 @@ public final class StandardServer extends LifecycleMBeanBase implements Server {
      */
     @Override
     public void addService(Service service) {
+        
+    	service.setServer(this);
 
-        service.setServer(this);
-
+    	//서버에서 하는 작업이니 여러 스레드에서 메소드 호출이 일어나도
+    	//한 스레드씩 처리하도록 하는듯.
         synchronized (servicesLock) {
             Service results[] = new Service[services.length + 1];
             System.arraycopy(services, 0, results, 0, services.length);

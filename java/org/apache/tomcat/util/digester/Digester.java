@@ -1164,7 +1164,8 @@ public class Digester extends DefaultHandler2 {
         if ((rules != null) && (rules.size() > 0)) {
             for (int i = 0; i < rules.size(); i++) {
                 try {
-                    Rule rule = rules.get(i);
+                    Rule rule = 
+                    		rules.get(i);
                     if (debug) {
                         log.debug("  Fire begin() for " + rule);
                     }

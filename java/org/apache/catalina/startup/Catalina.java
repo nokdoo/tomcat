@@ -80,10 +80,10 @@ public class Catalina {
 
     // ----------------------------------------------------- Instance Variables
 
+    //Bootstrap에 의해 true로 됨. 
     /**
      * Use await.
      */
-    //Bootstrap에 의해 true로 됨.
     protected boolean await = false;
 
     /**
@@ -256,6 +256,8 @@ public class Catalina {
     protected File configFile() {
 
         File file = new File(configFile);
+        
+        //절대 경로가 아니라면 configFile를 /home/nokdoo/apache-tomcat-9.0.2-src/output/build/의 하위 파일로 잡아줌.
         if (!file.isAbsolute()) {
             file = new File(Bootstrap.getCatalinaBase(), configFile);
         }
@@ -534,6 +536,7 @@ public class Catalina {
         File file = null;
         try {
             try {
+            	//conf/server.xml
                 file = configFile();
                 inputStream = new FileInputStream(file);
                 inputSource = new InputSource(file.toURI().toURL().toString());
